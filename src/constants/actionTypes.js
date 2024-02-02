@@ -1,0 +1,4 @@
+export const ADD_HABIT = 'ADD_HABIT';
+export const DELETE_HABIT = 'DELETE_HABIT';
+export const MARK_HABIT_DONE = 'MARK_HABIT_DONE';
+export const MARK_HABIT_NOT_DONE = 'MARK_HABIT_NOT_DONE';
