@@ -1,0 +1,40 @@
+.MainView {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.WeekView div input {
+  margin: 10px 0;
+  padding: 2px;
+}
+
+.week-navigation {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(100px, 1fr)
+  ); /* Adjust the minimum width of each grid item as needed */
+  gap: 10px; /* Adjust the gap between grid items as needed */
+  justify-content: center;
+}
+
+.tile {
+  padding: 10px 20px;
+  background-color: gray; /* Green background color */
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  border-radius: 8px;
+}

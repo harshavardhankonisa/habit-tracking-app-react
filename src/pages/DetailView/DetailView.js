@@ -1,6 +1,6 @@
 import "./DetailView.css";
 import Layout from "../Layout.js";
-import { addHabit } from "../../actions/habitActions.js";
+import { addHabit, deleteHabit } from "../../actions/habitActions.js";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
 
@@ -19,6 +19,10 @@ function DetailView() {
     setAddUserOpen(false);
   };
 
+  const handleDeleteHabit = (id) => {
+    dispatch(deleteHabit(id));
+  };
+
   return (
     <Layout>
       <div className="DetailView">
@@ -29,6 +33,7 @@ function DetailView() {
             {habits.map((habit) => (
               <li key={habit.id} className="habitOne">
                 <p>{habit.name}</p>
+                <button onClick={()=>{handleDeleteHabit(habit.id)}}>Delete</button>
               </li>
             ))}
           </ul>

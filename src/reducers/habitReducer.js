@@ -8,29 +8,44 @@ import {
 let id = 1;
 
 const initialState = {
-  habits: [],
+  habits: [
+    {
+      id: 100,
+      name: "Swimming",
+      done: ["21/3/2024", "22/3/2024"],
+      not_done: [],
+      dateAdded: "21/3/2024",
+    },
+    {
+      id: 101,
+      name: "Gym",
+      done: ["22/3/2024"],
+      not_done: ["21/3/2024"],
+      dateAdded: "21/3/2024",
+    },
+    {
+      id: 102,
+      name: "Hockey",
+      done: ["22/3/2024"],
+      not_done: ["20/3/2024"],
+      dateAdded: "21/3/2024",
+    },
+  ],
 };
 
 const habitReducer = (state = initialState, action) => {
   switch (action.type) {
     case ADD_HABIT:
       const today = new Date();
-      let day = today.getDate() - today.getDay();
-      const month = today.getMonth();
+      const date = today.getDate();
+      const month = today.getMonth() + 1;
       const year = today.getFullYear();
-
       const newHabit = {
         id: id++,
         name: action.payload,
-        weekLog: [
-          { id: 0, day: "Sunday", dd: day, mm: month, yyyy: year, isDone: false },
-          { id: 1, day: "Monday", dd: day + 1, mm: month, yyyy: year, isDone: false },
-          { id: 2, day: "Tuesday", dd: day + 2, mm: month, yyyy: year, isDone: false },
-          { id: 3, day: "Wednesday", dd: day + 3, mm: month, yyyy: year, isDone: false },
-          { id: 4, day: "Thursday", dd: day + 4, mm: month, yyyy: year, isDone: false },
-          { id: 5, day: "Friday", dd: day + 5, mm: month, yyyy: year, isDone: false },
-          { id: 6, day: "Saturday", dd: day + 6, mm: month, yyyy: year, isDone: false },
-        ],
+        done: [],
+        not_done: [],
+        dateAdded: `${date}/${month}/${year}`,
       };
       return {
         ...state,
@@ -44,15 +59,29 @@ const habitReducer = (state = initialState, action) => {
     case MARK_HABIT_DONE:
       return {
         ...state,
-        habits: state.habits.map(habit =>
-          habit.id === action.payload ? { ...habit, weekLog: habit.weekLog.map(day => day.id === action.dayId ? { ...day, isDone: true } : day) } : habit
+        habits: state.habits.map((habit) =>
+          habit.id === action.payload.habitId
+            ? {
+                ...habit,
+                done: [...habit.done, action.payload.day],
+                not_done: habit.not_done.filter(
+                  (date) => date !== action.payload.day
+                ), // Remove from not_done if exists
+              }
+            : habit
         ),
       };
     case MARK_HABIT_NOT_DONE:
       return {
         ...state,
-        habits: state.habits.map(habit =>
-          habit.id === action.payload ? { ...habit, weekLog: habit.weekLog.map(day => day.id === action.dayId ? { ...day, isDone: false } : day) } : habit
+        habits: state.habits.map((habit) =>
+          habit.id === action.payload.habitId
+            ? {
+                ...habit,
+                not_done: [...habit.not_done, action.payload.day],
+                done: habit.done.filter((date) => date !== action.payload.day), // Remove from done if exists
+              }
+            : habit
         ),
       };
     default:
