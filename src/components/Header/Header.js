@@ -1,16 +1,18 @@
-import "./Header.css";
 import { Link } from "react-router-dom";
+import "./Header.css";
 
-const Header = () => {
+export const Header = () => {
   return (
-    <div className="Header">
+    <header>
       <h1>Habit Tracker</h1>
       <ul>
-        <li><Link to="/">Detail View</Link></li>
-        <li><Link to="/weekview">Week View</Link></li>
+        <li>
+          <Link to="/">Detail View</Link>
+        </li>
+        <li>
+          <Link to="/weekview">Week View</Link>
+        </li>
       </ul>
-    </div>
+    </header>
   );
 };
-
-export default Header;

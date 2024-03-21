@@ -1,0 +1,58 @@
+.addHabitDiv {
+  position: fixed;
+  bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.DetailView h2 {
+  padding: 10px 0;
+}
+
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  background-color: black;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.popup-content label {
+  padding: 10px;
+}
+
+.popup-content label input {
+  margin-left: 5px;
+}
+
+.popup-content div {
+  padding: 10px;
+}
+
+.popup-content div button {
+  margin-right: 2px;
+}
+
+.habitsList {
+  list-style: none;
+}
+
+.habitOne {
+  margin: 15px 5px;
+  background-color: whitesmoke;
+  color: black;
+  border: 2px solid white;
+  border-radius: 5px;
+  padding: 5px;
+}

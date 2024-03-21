@@ -19,77 +19,42 @@ const habitReducer = (state = initialState, action) => {
       const month = today.getMonth();
       const year = today.getFullYear();
 
-      const habit = {
+      const newHabit = {
         id: id++,
         name: action.payload,
         weekLog: [
-          {
-            id: 0,
-            day: "Sunday",
-            dd: day,
-            mm: month,
-            yyyy: year,
-            isDone: "",
-          },
-          {
-            id: 1,
-            day: "Monday",
-            dd: day + 1,
-            mm: month,
-            yyyy: year,
-            isDone: "",
-          },
-          {
-            id: 2,
-            day: "Tuesday",
-            dd: day + 2,
-            mm: month,
-            yyyy: year,
-            isDone: "",
-          },
-          {
-            id: 3,
-            day: "Wednesday",
-            dd: day + 3,
-            mm: month,
-            yyyy: year,
-            isDone: "",
-          },
-          {
-            id: 4,
-            day: "Thursday",
-            dd: day + 4,
-            mm: month,
-            yyyy: year,
-            isDone: "",
-          },
-          {
-            id: 5,
-            day: "Friday",
-            dd: day + 5,
-            mm: month,
-            yyyy: year,
-            isDone: "",
-          },
-          {
-            id: 6,
-            day: "Saturday",
-            dd: day + 6,
-            mm: month,
-            yyyy: year,
-            isDone: "",
-          },
+          { id: 0, day: "Sunday", dd: day, mm: month, yyyy: year, isDone: false },
+          { id: 1, day: "Monday", dd: day + 1, mm: month, yyyy: year, isDone: false },
+          { id: 2, day: "Tuesday", dd: day + 2, mm: month, yyyy: year, isDone: false },
+          { id: 3, day: "Wednesday", dd: day + 3, mm: month, yyyy: year, isDone: false },
+          { id: 4, day: "Thursday", dd: day + 4, mm: month, yyyy: year, isDone: false },
+          { id: 5, day: "Friday", dd: day + 5, mm: month, yyyy: year, isDone: false },
+          { id: 6, day: "Saturday", dd: day + 6, mm: month, yyyy: year, isDone: false },
         ],
       };
-      const addHabits = [...state, habit];
-      return addHabits;
+      return {
+        ...state,
+        habits: [...state.habits, newHabit],
+      };
     case DELETE_HABIT:
-      const deleteHabits = state.filter((habit) => habit.id !== action.payload);
-      return deleteHabits;
+      return {
+        ...state,
+        habits: state.habits.filter((habit) => habit.id !== action.payload),
+      };
     case MARK_HABIT_DONE:
-      return state;
+      return {
+        ...state,
+        habits: state.habits.map(habit =>
+          habit.id === action.payload ? { ...habit, weekLog: habit.weekLog.map(day => day.id === action.dayId ? { ...day, isDone: true } : day) } : habit
+        ),
+      };
     case MARK_HABIT_NOT_DONE:
-      return state;
+      return {
+        ...state,
+        habits: state.habits.map(habit =>
+          habit.id === action.payload ? { ...habit, weekLog: habit.weekLog.map(day => day.id === action.dayId ? { ...day, isDone: false } : day) } : habit
+        ),
+      };
     default:
       return state;
   }
