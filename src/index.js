@@ -13,8 +13,8 @@ root.render(
   <Provider store={habitStore}>
     <Router>
       <Routes>
-        <Route path="/" element={<DetailView />} />
-        <Route path="/weekview" element={<WeekView />} />
+        <Route path="/habit-tracking-app-react/" element={<DetailView />} />
+        <Route path="/habit-tracking-app-react/weekview" element={<WeekView />} />
       </Routes>
     </Router>
   </Provider>

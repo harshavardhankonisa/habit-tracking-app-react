@@ -7,10 +7,10 @@ export const Header = () => {
       <h1>Habit Tracker</h1>
       <ul>
         <li>
-          <Link to="/">Detail View</Link>
+          <Link to="/habit-tracking-app-react/">Detail View</Link>
         </li>
         <li>
-          <Link to="/weekview">Week View</Link>
+          <Link to="/habit-tracking-app-react/weekview">Week View</Link>
         </li>
       </ul>
     </header>
